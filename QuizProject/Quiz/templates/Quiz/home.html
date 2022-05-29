@@ -1,0 +1,49 @@
+{% extends 'Quiz/base.html' %}
+ 
+{% block content %}
+{% load static %}
+<div class="container ">
+<h1 style="margin-top: 50px; font-size: 70px;">Let`s Check Your Score</h1><br><br><br>
+ 
+ <form method='post' action=''>
+    {% csrf_token %}
+    {% for q  in questions%}
+    <div class="quiz">
+      <label for="question">{{q.question}}</label>
+    </div>
+    <div class="answer">
+        <div class="check">
+            <input class="input" type="radio" name="{{q.question}}" id="gridRadios1" value="1" checked>
+            <label class="label" for="gridRadios1">
+                {{q.op1}}
+            </label>
+        </div>
+        <div class="check">
+            <input class="input" type="radio" name="{{q.question}}" id="gridRadios2" value="2">
+            <label class="label" for="gridRadios2">
+                {{q.op2}}
+            </label>
+        </div>
+        <div class="check">
+            <input class="input" type="radio" name="{{q.question}}" id="gridRadios1" value="3">
+            <label class="label" for="gridRadios1">
+                {{q.op3}}
+            </label>
+        </div>
+        <div class="check">
+            <input class="input" type="radio" name="{{q.question}}" id="gridRadios2" value="4">
+            <label class="label" for="gridRadios2">
+                {{q.op4}}
+            </label>
+        </div>
+        <br>
+    </div>    
+    {% endfor %}
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+    {% block script %}
+    {% endblock script %}
+
+</div>
+{% endblock %}
